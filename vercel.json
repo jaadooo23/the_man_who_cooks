@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "guy-who-cooks": {
+      "root": "artifacts/guy-who-cooks",
+      "framework": "vite",
+      "buildCommand": "pnpm run build",
+      "outputDirectory": "dist/public"
+    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": { "service": "guy-who-cooks" } }
+  ]
+}
