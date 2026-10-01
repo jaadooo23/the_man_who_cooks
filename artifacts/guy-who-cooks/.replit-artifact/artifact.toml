@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "The Guy Who Cooks"
+description = "A cinematic restaurant website for The Guy Who Cooks in Islamabad, showcasing bold burgers, chef specials, an editable menu, brand story, reviews, social content, and location details."
+version = "1.0.0"
+id = "artifacts/guy-who-cooks"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24073
+
+[services.development]
+run = "pnpm --filter @workspace/guy-who-cooks run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/guy-who-cooks", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/guy-who-cooks/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24073"
+BASE_PATH = "/"
